@@ -1,0 +1,127 @@
+<div id="accordionPai">
+
+  <div class="card">
+    <div class="card-header" id="headingPonto" data-toggle="collapse" data-target="#collapsePonto" aria-expanded="true"
+      aria-controls="collapsePonto" style="cursor: pointer">
+      <div class="container">
+        <a class="nav-link">
+          <i class="fas fa-fingerprint fa-lg mr-1"></i> Ponto</a>
+      </div>
+    </div>
+    <div id="collapsePonto" class="collapse show" aria-labelledby="headingPonto" data-parent="#accordionPai">
+      <div class="container">
+        <div class="card-body text-center">
+          <div class="table-responsive border-top border-bottom mt-1 mb-5" style="height: 250px">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- Se tiver pontos, imprime a tabela normalmente -->
+              <ng-template [ngIf]="this.pontosStore.getPontosSubject().length > 0 && !this.pontosStore.getBusy()">
+                <tbody>
+                  <tr *ngFor="let ponto of this.pontosStore.getPontosSubject()">
+                    <td>
+                      <ng-template [ngIf]="ponto.nPlataforma == 0">
+                        <i class="fas fa-mobile-alt fa-lg"></i>
+                      </ng-template>
+                      <ng-template [ngIf]="ponto.nPlataforma == 1">
+                        <i class="fas fa-desktop fa-lg"></i>
+                      </ng-template>
+                    </td>
+                    <td class="font-weight-bold">
+                      {{ponto.dPonto | date:'HH:mm'}}
+                    </td>
+                    <td>
+                      <ng-template [ngIf]="ponto.nOrigem == 0">
+                        <i class="fas fa-wifi fa-lg"></i>
+                      </ng-template>
+                      <ng-template [ngIf]="ponto.nOrigem == 1">
+                        <div class="fa-stack">
+                          <i class="fas fa-wifi fa-stack-1x fa-lg"></i>
+                          <i class="fas fa-slash fa-stack-1x fa-lg"></i>
+                        </div>
+                      </ng-template>
+                    </td>
+                  </tr>
+                </tbody>
+              </ng-template>
+              <!-- Se não tiver pontos, imprime mensagem que foi carregado, mas não há marcações -->
+              <ng-template [ngIf]="this.pontosStore.getPontosSubject().length == 0 && !this.pontosStore.getBusy()">
+                <tr>
+                  <td></td>
+                  <td (click)="this.pontosStore.getPontos(this.dataAtual)" style="cursor: pointer">
+                    <p class="mt-3">Não há marcações de ponto.</p>
+                    <i class="fas fa-redo fa-lg"></i>
+                    <p class="mt-3">Clique para atualizar.</p>
+                  </td>
+                  <td></td>
+                </tr>
+              </ng-template>
+              <!-- O objeto só fica indefinido se não houve carregamento, então é impresso o loading -->
+              <ng-template [ngIf]="this.pontosStore.getBusy()">
+                <tr>
+                  <td></td>
+                  <td>
+                    <div class="spinner-border text-primary" role="status"></div>
+                  </td>
+                  <td></td>
+                </tr>
+              </ng-template>
+            </table>
+          </div>
+          <ng-template [ngIf]="!this.pontosStore.getMarcandoPonto()">
+            <button class="btn btn-lg rounded-circle" data-toggle="modal" data-target="#modalPonto"><i
+                class="fas fa-fingerprint fa-3x p-1"></i></button>
+          </ng-template>
+          <ng-template [ngIf]="this.pontosStore.getMarcandoPonto()">
+            <div class="spinner-border text-primary" role="status"></div>
+          </ng-template>
+
+          <!-- Modal para confirmar ponto -->
+          <div class="modal fade mt-5" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  Prosseguir com a marcação de ponto?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Não</button>
+                  <button type="button" class="btn btn-success text-white" data-dismiss="modal"
+                    (click)="marcarPonto(0)">Sim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingHistorico" data-toggle="collapse" data-target="#collapseHistorico"
+      aria-expanded="false" aria-controls="collapseHistorico" style="cursor: pointer">
+      <div class="container">
+        <a class="nav-link">
+          <i class="fas fa-calendar-alt fa-lg mr-1"></i> Histórico</a>
+      </div>
+    </div>
+    <div id="collapseHistorico" class="collapse show" aria-labelledby="headingHistorico" data-parent="#accordionPai">
+      <div class="container">
+        <div class="card-body">
+
+          <full-calendar defaultView="dayGridMonth" [plugins]="pluginsCalendario" [weekends]="true"
+            [buttonText]="textosCalendario" [titleFormat]="formatoData" locale="pt-br"
+            (dateClick)="abrirHistorico($event)">
+          </full-calendar>
+
+          <modal-historico-ponto [data]="Inputdata"></modal-historico-ponto>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

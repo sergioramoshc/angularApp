@@ -1,0 +1,72 @@
+<div class="container-fluid p-0 d-flex w-100 h-100 flex-column bg-style">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-5">
+        <a class="text-info" style="cursor: pointer" [routerLink]="['/']"><i class="fas fa-arrow-left mr-2"></i> Voltar
+          para Login</a><br />
+        <p class="text-white mt-4">Preencha os campos abaixo para definir sua senha de primeiro acesso.</p>
+        <form class="needs-validation mt-3" novalidate [formGroup]="acessoForm" (ngSubmit)="validarDados(acessoForm)">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" style="max-width: 60px">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="CPF" maxlength="11" required pattern=".{11,}"
+                title="O CPF deve ter no mínimo 11 dígitos" formControlName="cpf">
+            </div>
+            <small class="text-white">* Digite apenas números.</small>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" style="max-width: 60px">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="date" class="form-control" placeholder="Data de nascimento" required pattern=".{10,}"
+                formControlName="nascimento">
+            </div>
+            <small class="text-white">* Digite sua data de nascimento.</small>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" style="max-width: 60px">
+                <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+              </div>
+              <input type="password" class="form-control" placeholder="Senha" maxlength="50" required pattern=".{8,}"
+                title="A senha deve ter no mínimo 8 caracteres" formControlName="pass">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" style="max-width: 60px">
+                <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+              </div>
+              <input type="password" class="form-control" placeholder="Repetir Senha" maxlength="50" required
+                pattern=".{8,}" title="A senha deve ter no mínimo 8 caracteres" formControlName="repass">
+            </div>
+            <small class="text-white">* As senhas devem ter entre 8-50 caracteres.</small>
+          </div>
+          <div class="form-group">
+            <ng-template [ngIf]="!this.loginStore.getBusy()">
+              <button class="btn btn-light mt-3" type="submit">Definir senha</button>
+            </ng-template>
+            <ng-template [ngIf]="this.loginStore.getBusy()">
+              <button class="btn btn-light btn-md mt-3" disabled type="submit">
+                <span class="spinner-border text-primary spinner-border-sm" role="status">
+                </span>
+                Definir senha
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-auto text-center">
+    <div class="inner">
+      <p class="text-white">© 2020 <a href="http://www.statum.com.br/" target="_blank" class="text-white">Statum</a>
+      </p>
+    </div>
+  </footer>
+</div>

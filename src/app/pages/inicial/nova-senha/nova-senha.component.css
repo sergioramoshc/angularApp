@@ -1,0 +1,12 @@
+
+.text-primary {
+    color: var(--marrom1) !important;
+}
+
+.text-info {
+    color: white !important;
+}
+  
+a.text-info:hover {
+    color: var(--marrom4) !important;
+}

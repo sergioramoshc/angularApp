@@ -1,0 +1,56 @@
+<div class="container-fluid p-0 d-flex w-100 h-100 flex-column bg-style">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-5">
+        <h1 class="text-white">HÁ</h1>
+        <h1 class="text-white">UM TEMPO</h1>
+        <h1 class="text-white">PARA TUDO.</h1>
+        <p class="text-white mt-5">Digite os dados abaixo para se conectar.</p>
+        <form class="needs-validation mt-3" novalidate [formGroup]="loginForm" (ngSubmit)="validarLogin(loginForm)">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" style="max-width: 50px">
+                <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="CPF ou E-Mail" maxlength="100" required
+                pattern=".{11}|.{5,100}" title="CPF/E-mail deve ser válido" formControlName="user">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend" style="max-width: 50px">
+                <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+              </div>
+              <input type="password" class="form-control" placeholder="Senha" maxlength="50" required pattern=".{8,}"
+                title="A senha deve ter no mínimo 8 caracteres" formControlName="pass">
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <a class="text-info" [routerLink]="['/primeiro-acesso']">Primeiro acesso?</a><br />
+            <!--<span><input name="lembrar" type="checkbox"></span> <label for="lembrar" class="text-white"><span> Lembrar de mim</span> </label><br>-->
+          </div>
+          <div class="form-group">
+            <ng-template [ngIf]="!this.loginStore.getBusy()">
+              <button class="btn btn-light btn-md mt-3" type="submit">Entrar</button>
+            </ng-template>
+            <ng-template [ngIf]="this.loginStore.getBusy()">
+              <button class="btn btn-light btn-md mt-3" disabled type="submit">
+                <span class="spinner-border text-primary spinner-border-sm" role="status">
+                </span>
+                Entrar
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-auto text-center">
+    <div class="inner">
+      <p class="text-white">© 2020 <a href="http://www.statum.com.br/" target="_blank" class="text-white">Statum</a>
+      </p>
+    </div>
+  </footer>
+</div>

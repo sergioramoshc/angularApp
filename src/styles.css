@@ -1,0 +1,83 @@
+
+/* CORES DEFAULT DA APLICAÇÃO */
+:root {
+  --marrom1: #30231D;
+  --marrom2: #6A5750;
+  --marrom3: #B5A397;
+  --marrom4: #F7F7F7;
+  --primary: var(--marrom1) !important;
+  --secondary: var(--marrom2) !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+.bg-style {
+  background-color: var(--marrom3) !important;
+  background-image: linear-gradient(to bottom, rgba(48, 35, 29, 0.95), rgba(181, 163, 151, 0.95)), url("assets/images/street1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.bg-light {
+  background-color: var(--marrom4) !important;
+  background-image: none !important;
+  height: 100%;
+}
+
+.btn-light {
+  background-color: white !important;
+  color: var(--marrom1) !important;
+  font-weight: 600;
+}
+
+.btn-dark {
+  background-color: var(--marrom2) !important;
+  color: white !important;
+  font-weight: 600;
+}
+
+.text-primary {
+  color: var(--marrom1) !important;
+}
+
+.text-secondary {
+  color: var(--marrom2) !important;
+}
+.text-info {
+    color: white !important;
+}
+  
+a.text-info:hover {
+    color: var(--marrom3) !important;
+}
+
+.btn-primary {
+  background-color: var(--marrom2) !important;
+  border-color: var(--marrom2) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--marrom3) !important;
+  border-color: var(--marrom3) !important;
+}
+
+.btn-primary:focus {
+  box-shadow: none !important;
+}
+
+.btn-secondary {
+  background-color: var(--marrom3) !important;
+  border-color: var(--marrom3) !important;
+}
+
+.btn-secondary:hover {
+  background-color: gainsboro !important;
+  border-color: gainsboro !important;
+}
+
+.btn-secondary:focus {
+  box-shadow: none !important;
+}
