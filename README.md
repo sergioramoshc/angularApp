@@ -1,3 +1,7 @@
+Repositório on-line: https://github.com/sergioramoshc/angularApp
+
+---
+
 ATENÇÃO: Este projeto é apenas um pequeno pedaço de um projeto que produzi na Statum, onde retirei grande parte da regra de negócios para preservar a integridade do sistema. Por esse motivo, as funções do sistema não foram preservadas por completo.
 
 Como executar a aplicação Web
